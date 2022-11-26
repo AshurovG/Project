@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -25,7 +26,7 @@ type Validate interface {
 	validate() bool
 }
 
-func (t *LP) validate() bool {
+func (t LP) validate() bool {
 	for key, el := range Users {
 		if key == t.Login && el == t.Password {
 			return true
@@ -35,7 +36,7 @@ func (t *LP) validate() bool {
 }
 
 var (
-	tmpl = template.Must(template.ParseFiles("forms.html"))
+	tmpl = template.Must(template.ParseFiles("../front/index.html"))
 )
 
 func handler(w http.ResponseWriter, req *http.Request) {
@@ -45,4 +46,11 @@ func handler(w http.ResponseWriter, req *http.Request) {
 	}
 	var tmp Validate = LP{data.Login, data.Password}
 	data.Success = tmp.validate()
+
+	tmpl.Execute(w, data)
+}
+
+func main() {
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
