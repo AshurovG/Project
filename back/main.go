@@ -51,6 +51,7 @@ func handler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/index.html", handler)
+	http.FileServer(http.Dir("../../Project"))
+	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
