@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/form.css">
+    <script src="js/form.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    {{if .Success}}
+    <div>
+        <h1> {{ .StorageAccess}} </h1>
+    </div>
+    {{else}}
+    <div class="container">
+        <div class="block">
+            <div class="block__item block-item">
+                <h2 class="block-item__title">У вас уже есть аккаунт?</h2 >
+                <button class="block-item__button signin-btn">Войти</button>
+            </div>
+            <div class="block__item block-item">
+                <h2 class="block-item__title">У вас еще нет аккаунта?</h2>
+                <button class="block-item__button signup-btn">Зарегестрироваться</button>
+            </div>
+
+        </div>
+        <div class="form-box">
+            <form action="#" class="form form_signin" method="post">
+                <h3 class="form__title">Вход</h3>
+                <p><input type="text" class="form__input" placeholder="Логин" name="login"></p>
+                <p><input type="password" class="form__input" placeholder="Пароль" name="password"></p>
+                <p><button class="form__button" type="submit">Войти</button></p>
+                <p><a class="form__forgot" href="#">Восстановить пароль</a></p>
+            </form>
+
+            <form action="#" class="form form_signup">
+                <h3 class="form__title">Регистрация</h3>
+                <p><input type="text" class="form__input" placeholder="Логин"></p>
+                <p><input type="email" class="form__input" placeholder="Почта"></p>
+                <p><input type="password" class="form__input" placeholder="Пароль"></p>
+                <p><input type="password" class="form__input" placeholder="Подтвердите пароль"></p>
+                <p><button class="form__button form__button_signup">Зарегестрироваться</button></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{{end}}
